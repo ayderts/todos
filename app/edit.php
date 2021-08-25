@@ -9,15 +9,15 @@ if(isset($_POST['title']) && isset($_POST['email']) && isset($_POST['username'])
     $id = $_POST['id'];
 
 
-        $stmt = $conn->prepare("UPDATE todos SET title=?,email=?,username=? where id=?");
-        $res = $stmt->execute([$title,$email,$username,$id]);
+    $stmt = $conn->prepare("UPDATE todos SET title=?,email=?,username=? where id=?");
+    $res = $stmt->execute([$title,$email,$username,$id]);
 
-        if($res){
-            header("Location: ../index.php?mess=admin");
-        }else {
-            header("Location: ../index.php");
-        }
-        $conn = null;
-        exit();
+    if($res){
+        header("Location: ../index.php?mess=admin");
+    }else {
+        header("Location: ../index.php");
+    }
+    $conn = null;
+    exit();
 
 }

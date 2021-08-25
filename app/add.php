@@ -2,7 +2,7 @@
 
 if(isset($_POST['title']) && isset($_POST['email']) && isset($_POST['username'])){
     require '../db_conn.php';
-
+    $itemRole = $_POST['itemRole'];
     $title = $_POST['title'];
     $email = $_POST['email'];
     $username = $_POST['username'];
@@ -15,7 +15,13 @@ if(isset($_POST['title']) && isset($_POST['email']) && isset($_POST['username'])
         $res = $stmt->execute([$title,$email,$username]);
 
         if($res){
-            header("Location: ../index.php?mess=success"); 
+            if($itemRole=='admin')
+            {
+                header("Location: ../index.php?mess=admin");
+            }
+            else{
+                header("Location: ../index.php?mess=guest");
+            }
         }else {
             header("Location: ../index.php");
         }
